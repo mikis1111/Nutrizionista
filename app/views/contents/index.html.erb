@@ -1,0 +1,33 @@
+<div class="container">
+  <h4 class="center-align">Elenco Contenuti</h4>
+
+  <div class="right-align">
+    <%= link_to "Nuovo Contenuto", new_content_path, class: "btn waves-effect waves-light purple darken-2" %>
+  </div>
+
+  <table class="highlight responsive-table">
+    <thead>
+      <tr>
+        <th>Titolo</th>
+        <th>Descrizione</th>
+        <th>Prezzo</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @contents.each do |content| %>
+        <tr>
+          <td><%= content.titolo %></td>
+          <td><%= content.descrizione %></td>
+          <td><%= number_to_currency(content.price) %></td>
+          <td>
+            <%= link_to "Modifica", edit_content_path(content), class: "btn-small blue" %>
+            <%= link_to "Elimina", content_path(content), method: :delete, data: { confirm: "Sei sicuro?" }, class: "btn-small red" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
