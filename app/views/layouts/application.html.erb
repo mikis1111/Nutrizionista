@@ -2,36 +2,85 @@
 <html>
   <head>
     <title>Nutrizionista</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-   
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <%= stylesheet_link_tag "application", media: 'all', "data-turbo-track": "reload" %>
 
+    <!-- Icone Materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- CSS -->
+    <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+    <!-- JS -->
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-  <%= render "layouts/header" %>
+    <!-- NAVBAR DESKTOP -->
+    <nav class="purple darken-4">
+      <div class="nav-wrapper container">
+        <a href="<%= root_path %>" class="brand-logo">Francesca Vitale</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+        <ul class="right hide-on-med-and-down">
+          <li><%= link_to "Chi Sono", chi_sono_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %></li>
+          <% else %>
+            <li><%= link_to "Login", new_user_session_path %></li>
+            <li><%= link_to "Registrazione", new_user_registration_path %></li> <!-- 🆕 Registrazione -->
+          <% end %>
+        </ul>
+      </div>
+    </nav>
 
-  <main>
-  <%= yield %>
-  </main>
+    <!-- SIDENAV MOBILE -->
+    <ul class="sidenav" id="mobile-demo">
+      <li><%= link_to "Chi Sono", chi_sono_path, data: { turbo: false } %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %></li>
+      <% else %>
+        <li><%= link_to "Login", new_user_session_path, data: { turbo: false } %></li>
+        <li><%= link_to "Registrazione", new_user_registration_path, data: { turbo: false } %></li> <!-- 🆕 Registrazione -->
+      <% end %>
+    </ul>
 
-  <%= render "layouts/footer" %>
+    <!-- AVVISI -->
+    <div class="container">
+      <% if notice %>
+        <div class="card-panel green lighten-4 green-text text-darken-4"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="card-panel red lighten-4 red-text text-darken-4"><%= alert %></div>
+      <% end %>
+    </div>
 
+    <!-- CONTENUTO -->
+    <main class="container">
+      <%= yield %>
+    </main>
 
+    <!-- FOOTER -->
+    <footer class="page-footer purple darken-4">
+      <div class="container center-align white-text">
+        &copy; <%= Date.today.year %> Francesca Vitale - Tutti i diritti riservati
+      </div>
+    </footer>
+
+    <!-- JavaScript: chiusura sidenav al clic -->
     <%= javascript_tag do %>
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, {});
-  });
-<% end %>
-  </body>
+      document.addEventListener('DOMContentLoaded', function () {
+        const sidenavs = document.querySelectorAll('.sidenav');
+        const instances = M.Sidenav.init(sidenavs);
 
-  
+        document.querySelectorAll('.sidenav a').forEach(function (el) {
+          el.addEventListener('click', function () {
+            const instance = M.Sidenav.getInstance(document.querySelector('.sidenav'));
+            if (instance) instance.close();
+          });
+        });
+      });
+    <% end %>
+  </body>
 </html>
+

@@ -4,12 +4,25 @@
       <%= link_to "Francesca Vitale", root_path, class: "brand-logo" %>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <%= link_to "Chi Sono", chi_sono_path %>
+        
+            <% if user_signed_in? %> 
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Sei sicuro di voler uscire?" } %>
+                 <% else %>   
+                    <li><%= link_to "LogIn", new_user_session_path %></li>
+        <li><%= link_to "Registrazione", new_user_registration_path %></li>
+        <% end %>
+</li>
       </ul>
     
 
   <ul class="sidenav" id="mobile-demo">
-    <%= link_to "Chi Sono", chi_sono_path %>
+    
+    <% if user_signed_in? %> 
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+                 <% else %>   
+                    <li><%= link_to "LogIn", new_user_session_path %></li>
+        <li><%= link_to "Registrazione", new_user_registration_path %></li>
+        <% end %>
   </ul>
   </div>
   </nav>
