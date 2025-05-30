@@ -19,6 +19,7 @@ gem "jbuilder"
 # Per utilizzare Materialize via asset pipeline
 gem "sassc-rails"
 gem 'materialize-sass', '~> 1.0.0'
+gem 'devise'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
