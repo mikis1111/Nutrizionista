@@ -11,7 +11,7 @@
         <th>Titolo</th>
         <th>Descrizione</th>
         <th>Prezzo</th>
-        <th>Azioni</th>
+        
       </tr>
     </thead>
 
@@ -22,8 +22,14 @@
           <td><%= content.descrizione %></td>
           <td><%= number_to_currency(content.price) %></td>
           <td>
-            <%= link_to "Modifica", edit_content_path(content), class: "btn-small blue" %>
-            <%= link_to "Elimina", content_path(content), method: :delete, data: { confirm: "Sei sicuro?" }, class: "btn-small red" %>
+            <td>
+  <div class="btn-group-vertical">
+    <%= link_to "Mostra", content_path(content), class: "btn green full-width" %>
+    <%= link_to "Modifica", edit_content_path(content), class: "btn blue full-width" %>
+    <%= link_to "Elimina", content_path(content), method: :delete, data: { confirm: "Sei sicuro?" }, class: "btn red full-width" %>
+  </div>
+</td>
+
           </td>
         </tr>
       <% end %>

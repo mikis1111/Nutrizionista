@@ -1,5 +1,7 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_admin!
 
   # GET /contents or /contents.json
   def index
@@ -8,6 +10,7 @@ class ContentsController < ApplicationController
 
   # GET /contents/1 or /contents/1.json
   def show
+    @content = Content.find(params[:id])
   end
 
   # GET /contents/new
@@ -21,28 +24,26 @@ class ContentsController < ApplicationController
 
   # POST /contents or /contents.json
   def create
-    @content = Content.new(content_params)
-
-    respond_to do |format|
-      if @content.save
-        format.html { redirect_to @content, notice: "Content was successfully created." }
-        format.json { render :show, status: :created, location: @content }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @content.errors, status: :unprocessable_entity }
-      end
+    @content = current_user.contents.build(content_params)
+  
+    if @content.save
+      redirect_to @content, notice: "Contenuto creato con successo"
+    else
+      render :new
     end
   end
+  
+  
 
   # PATCH/PUT /contents/1 or /contents/1.json
   def update
     respond_to do |format|
       if @content.update(content_params)
         format.html { redirect_to @content, notice: "Content was successfully updated." }
-        format.json { render :show, status: :ok, location: @content }
+        
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @content.errors, status: :unprocessable_entity }
+        
       end
     end
   end
@@ -66,5 +67,11 @@ class ContentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def content_params
       params.require(:content).permit(:titolo, :descrizione, :price)
+    end
+
+    def authorize_admin!
+      unless current_user&.admin?
+        redirect_to root_path, alert: "Non sei autorizzato ad accedere a questa sezione."
+      end
     end
 end

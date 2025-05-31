@@ -1,9 +1,47 @@
-<h1>New content</h1>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m8 l6 offset-m2 offset-l3">
+      <div class="card">
+        <div class="card-content">
+          <h5 class="center-align">Nuovo Contenuto</h5>
 
-<%= render "form", content: @content %>
+          <%= form_with(model: @content, local: true) do |f| %>
+            <% if @content.errors.any? %>
+              <div class="card-panel red lighten-4 red-text text-darken-4">
+                <strong><%= pluralize(@content.errors.count, "errore") %> impedisce il salvataggio:</strong>
+                <ul>
+                  <% @content.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
 
-<br>
+            <div class="input-field">
+              <%= f.label :titolo %>
+              <%= f.text_field :titolo, class: "validate" %>
+            </div>
 
-<div>
-  <%= link_to "Back to contents", contents_path %>
+            <div class="input-field">
+              <%= f.label :descrizione %>
+              <%= f.text_area :descrizione, class: "materialize-textarea" %>
+            </div>
+
+            <div class="input-field">
+              <%= f.label :price %>
+              <%= f.number_field :price, step: "0.01", class: "validate" %>
+            </div>
+
+            <div class="center">
+              <%= f.submit "Crea Contenuto", class: "btn purple darken-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="center" style="margin-top: 20px;">
+        <%= link_to "Torna ai contenuti", contents_path, class: "blue-text text-darken-2" %>
+      </div>
+    </div>
+  </div>
 </div>

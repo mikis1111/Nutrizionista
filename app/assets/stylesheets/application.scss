@@ -18,3 +18,24 @@ body {
 .sidenav-overlay {
   background-color: rgba(0, 0, 0, 0.2) !important;
 }
+
+
+.full-width {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+
+.flash-message {
+  font-size: 1.1rem;
+  padding: 1rem;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+textarea.materialize-textarea {
+  min-height: 140px;
+}

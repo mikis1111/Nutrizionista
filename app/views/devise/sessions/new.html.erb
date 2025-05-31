@@ -15,14 +15,16 @@
           <%= f.password_field :password, autocomplete: "current-password", class: "validate" %>
         </div>
 
-        <% if devise_mapping.rememberable? %>
-          <div class="input-field">
-            <label>
-              <%= f.check_box :remember_me %>
-              <span>Ricordami</span>
-            </label>
-          </div>
-        <% end %>
+<% if devise_mapping.rememberable? %>
+  <p>
+    <label>
+      <%= f.check_box :remember_me, id: "remember_me" %>
+      <span>Ricordami</span>
+    </label>
+  </p>
+<% end %>
+
+
 
         <div class="input-field center">
           <%= f.submit "Accedi", class: "btn waves-effect waves-light purple darken-2" %>

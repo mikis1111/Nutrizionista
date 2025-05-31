@@ -2,28 +2,71 @@
   <nav class="purple darken-4">
     <div class="container nav-wrapper">
       <%= link_to "Francesca Vitale", root_path, class: "brand-logo" %>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        
-            <% if user_signed_in? %> 
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Sei sicuro di voler uscire?" } %>
-                 <% else %>   
-                    <li><%= link_to "LogIn", new_user_session_path %></li>
-        <li><%= link_to "Registrazione", new_user_registration_path %></li>
-        <% end %>
-</li>
-      </ul>
-    
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+        <i class="material-icons">menu</i>
+      </a>
 
-  <ul class="sidenav" id="mobile-demo">
-    
-    <% if user_signed_in? %> 
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %>
-                 <% else %>   
-                    <li><%= link_to "LogIn", new_user_session_path %></li>
-        <li><%= link_to "Registrazione", new_user_registration_path %></li>
+      <!-- DESKTOP NAV -->
+      <header class="navbar-fixed">
+  <nav class="purple darken-4">
+    <div class="container nav-wrapper">
+      <%= link_to "Francesca Vitale — #{current_user&.name || 'Guest'}", root_path, class: "brand-logo" %>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+      <ul class="right hide-on-med-and-down">
+        <% if user_signed_in? %>
+          <% if current_user.email == "francescavitaledbm@gmail.com" %>
+            <li><span class="yellow-text text-accent-2">Amministratore</span></li>
+          <% else %>
+            <li><span class="white-text">Ciao <%= current_user.name.capitalize %></span></li>
+          <% end %>
+          <li><%= link_to "Chi Sono", chi_sono_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Chi Sono", chi_sono_path %></li>
+          <li><%= link_to "LogIn", new_user_session_path %></li>
+          <li><%= link_to "Registrazione", new_user_registration_path %></li>
         <% end %>
-  </ul>
-  </div>
+      </ul>
+
+      <!-- Mobile -->
+      <ul class="sidenav" id="mobile-demo">
+        <% if user_signed_in? %>
+          <% if current_user.email == "francescavitaledbm@gmail.com" %>
+            <li><span class="yellow-text text-accent-2">Amministratore</span></li>
+          <% else %>
+            <li><span class="black-text">Ciao <%= current_user.name.capitalize %></span></li>
+          <% end %>
+          <li><%= link_to "Chi Sono", chi_sono_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %></li>
+        <% else %>
+          <li><%= link_to "Chi Sono", chi_sono_path %></li>
+          <li><%= link_to "LogIn", new_user_session_path %></li>
+          <li><%= link_to "Registrazione", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+      <!-- MOBILE NAV -->
+      <ul class="sidenav" id="mobile-demo">
+        <% if user_signed_in? %>
+          <% if current_user.email == "francescavitaledbm@gmail.com" %>
+            <li><span class="yellow-text text-accent-2">Amministratore</span></li>
+          <% else %>
+            <li><span class="black-text">Ciao <%= current_user.name.presence || current_user.email %></span></li>
+          <% end %>
+
+          <li>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+          </li>
+        <% else %>
+          <li><%= link_to "LogIn", new_user_session_path %></li>
+          <li><%= link_to "Registrazione", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
 </header>
