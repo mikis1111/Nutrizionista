@@ -1,0 +1,71 @@
+/* app/assets/stylesheets/custom_cards.scss */
+
+/* 1) Card principale: arrotonda leggermente gli angoli e imposta un bordo più netto */
+.modern-card {
+    border-radius: 12px;           /* angoli arrotondati */
+    overflow: hidden;              /* taglia bordi / ombre interne */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  /* 2) Effetto 'lift' al passaggio del mouse */
+  .modern-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* 3) Padding extra per il contenuto della card */
+  .padded-content {
+    padding: 32px 24px;  /* 32px sopra/sotto, 24px destra/sinistra */
+  }
+  
+  /* 4) Stile titolo */
+  .card-title {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #333;
+  }
+  
+  /* 5) Stile form: margini verticali extra tra i campi */
+  .modern-form .input-field {
+    margin-bottom: 24px;
+  }
+  
+  /* 6) Stile immagine preview: arrotondamento e bordo sottile */
+  .bordered-img {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* 7) Mantieni il file-path più largo e standalone */
+  .file-path-wrapper input.file-path {
+    border-bottom: 1px solid #bdbdbd;
+    margin-left: 12px;
+  }
+  
+  /* 8) Pulsante grande moderno */
+  .btn-large.purple {
+    border-radius: 24px;
+    padding: 0 32px;
+    letter-spacing: 1px;
+    font-size: 16px;
+  }
+  
+  /* 9) Card-action: bordo superiore leggero e sfondo trasparente */
+  .card-action {
+    border-top: 1px solid #e0e0e0 !important;
+    background-color: #fafafa;
+    padding: 16px 24px;
+  }
+  
+  /* 10) Link centrato, colore più scuro al passaggio del mouse */
+  .card-action a {
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+  
+  .card-action a:hover {
+    color: #5e35b1; /* viola scuro più intenso */
+  }
+  

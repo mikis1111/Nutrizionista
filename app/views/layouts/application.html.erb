@@ -15,11 +15,15 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="<%= controller.controller_name %> <%= controller.action_name %>">
+
     <!-- NAVBAR DESKTOP -->
   <nav class="purple darken-4">
   <div class="container nav-wrapper">
-    <%= link_to "Francesca Vitale", root_path, class: "brand-logo" %>
+    <%= link_to root_path, class: "brand-logo" do %>
+  <img src="<%= asset_path('logo.jpg') %>" alt="Logo Francesca Vitale" style="height: 56px; vertical-align: middle;">
+<% end %>
+
     <a href="#" data-target="mobile-demo" class="sidenav-trigger">
       <i class="material-icons">menu</i>
     </a>
@@ -79,11 +83,11 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="page-footer purple darken-4">
-      <div class="container center-align white-text">
-        &copy; <%= Date.today.year %> Francesca Vitale - Tutti i diritti riservati
-      </div>
-    </footer>
+    <footer class="page-footer purple darken-4" style="padding: 12px 0;">
+  <div class="container center-align white-text" style="line-height: 1.5rem; font-size: 0.9rem;">
+    &copy; <%= Date.today.year %> Francesca Vitale - Tutti i diritti riservati
+  </div>
+</footer>
 
     <!-- JavaScript: chiusura sidenav al clic -->
     <%= javascript_tag do %>
@@ -99,6 +103,9 @@
         });
       });
     <% end %>
+
+
+    
   </body>
 </html>
 

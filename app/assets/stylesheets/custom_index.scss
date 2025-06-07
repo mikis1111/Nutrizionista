@@ -1,0 +1,104 @@
+/* 1) Card moderna con bordi arrotondati e hover lift */
+.modern-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .modern-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* 2) Padding interno generoso */
+  .padded-content {
+    padding: 32px 24px 16px 24px;
+  }
+  
+  /* 3) Tabella più leggibile */
+  .modern-table thead {
+    background-color: #f3e5f5; /* lavanda chiaro */
+  }
+  .modern-table th {
+    color: #4a148c;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .modern-table td {
+    vertical-align: middle;
+    padding: 12px 16px;
+  }
+  .modern-table tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+  
+  /* 4) Thumbnail e immagini */
+  .thumbnail-cell {
+    width: 80px;
+  }
+  .thumb-img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* 5) Colonna azioni */
+  .actions-cell .btn-small {
+    margin: 4px 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 0.8rem;
+    text-transform: none;
+  }
+  
+  /* 6) Pulsante New in alto */
+  .btn-large.purple {
+    border-radius: 24px;
+    padding: 0 28px;
+  }
+  
+  /* 7) Footer card-action */
+  .card-action {
+    background-color: #fafafa !important;
+    border-top: 1px solid #e0e0e0 !important;
+    padding: 12px 24px;
+  }
+  
+  /* 8) Tooltip personalizzati */
+  .tooltipped {
+    opacity: 0.9 !important;
+  }
+  
+  /* 9) Responsive tweaks */
+  @media (max-width: 600px) {
+    .actions-cell {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .actions-cell .btn-small {
+      margin: 4px 4px;
+    }
+    .modern-table td,
+    .modern-table th {
+      padding: 8px 12px;
+    }
+  }
+  
+  /* Forza tutti i btn-small in .actions-cell ad essere uguali */
+.actions-cell .btn-small {
+    /* Scegli la larghezza che preferisci, ad es. 100px */
+    width: 100px;
+    /* Per allineare l’icona + testo al centro */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Se vuoi, uniforma anche l’altezza */
+  .actions-cell .btn-small {
+    min-height: 36px; /* o l’altezza che preferisci */
+    padding: 0 8px;   /* padding orizzontale interno */
+  }
+  

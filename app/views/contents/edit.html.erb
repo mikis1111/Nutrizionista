@@ -1,10 +1,16 @@
-<h1>Editing content</h1>
-
-<%= render "form", content: @content %>
-
-<br>
-
-<div>
-  <%= link_to "Show this content", @content %> |
-  <%= link_to "Back to contents", contents_path %>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m8 l6 offset-m2 offset-l3">
+      <div class="card hoverable z-depth-2" style="border-radius: 12px; overflow: hidden;">
+        <div class="card-content">
+          <h5 class="center-align">Modifica Contenuto</h5>
+          <!-- qui viene renderizzato il partial con il form vero -->
+          <%= render "form", content: @content %>
+        </div>
+        <div class="card-action center-align">
+          <%= link_to "Torna ai contenuti", contents_path, class: "blue-text text-darken-2" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

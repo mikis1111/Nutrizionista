@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_31_122154) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_07_113926) do
   create_table "contents", force: :cascade do |t|
     t.string "titolo"
     t.text "descrizione"
@@ -18,6 +18,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_31_122154) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.string "cover_file_name"
+    t.string "cover_content_type"
+    t.integer "cover_file_size"
+    t.datetime "cover_updated_at"
+    t.string "allegato_file_name"
+    t.string "allegato_content_type"
+    t.integer "allegato_file_size"
+    t.datetime "allegato_updated_at"
     t.index ["user_id"], name: "index_contents_on_user_id"
   end
 

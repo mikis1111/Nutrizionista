@@ -1,4 +1,6 @@
 @import "materialize";
+@import "custom_cards";
+@import "custom_index";
 
 body {
     display: flex;
@@ -39,3 +41,174 @@ body {
 textarea.materialize-textarea {
   min-height: 140px;
 }
+
+.profile-section {
+  margin-top: 30px; /* ridotto da 100 */
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 50px;
+  text-align: center;
+  max-width: 900px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  margin-bottom: 20px;
+}
+
+.profile-title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.profile-description {
+  font-size: 19px;
+  line-height: 1.8;
+  color: #444;
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+
+.card-container {
+  margin-top: 20px;
+}
+
+/* Animazione in entrata */
+.animated-card {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rendi la card più visibile su sfondo */
+.chi-sono-card {
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Sfumatura laterale con colore tenue */
+body {
+  background: linear-gradient(to right, #f1f1f1 0%, white 10%, white 90%, #f1f1f1 100%);
+}
+
+/* Decorazioni con icone ai lati (facoltativo) */
+.decorative-icon-left,
+.decorative-icon-right {
+  position: fixed;
+  top: 25%;
+  width: 100px;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.decorative-icon-left {
+  left: 0;
+  transform: rotate(-15deg);
+}
+
+.decorative-icon-right {
+  right: 0;
+  transform: rotate(15deg);
+}
+
+
+.background-image {
+  background-image: url(asset-path('background.jpg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+body {
+  background-image: url(background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url('background.jpg') center center / cover no-repeat;
+
+  &.contents.index {
+    background: none !important;
+  }
+}
+
+
+.homepage-banner {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+footer.page-footer {
+  padding: 20px 0;
+}
+
+.footer-copyright {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.9rem;
+}
+
+
+table.highlight tbody tr:hover {
+  background-color: #f3f3f3;
+}
+
+.btn-small {
+  margin: 2px;
+  font-size: 0.8rem;
+}
+
+
+.collection-item:hover {
+  background-color: #f3e5f5; /* lilla chiaro */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.collection-item:hover i.material-icons {
+  color: #4a148c; /* viola più scuro */
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+
+
+.profile-section, .profile-section p, .profile-section h5, .collection-item {
+  font-family: 'Garamond', 'Georgia', serif;
+}
+

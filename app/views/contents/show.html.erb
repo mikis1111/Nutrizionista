@@ -1,6 +1,9 @@
 <div class="container">
   <div class="card-panel z-depth-2">
     <h4 class="teal-text text-darken-2">Dettagli Contenuto</h4>
+    <%= image_tag @content.cover.url(:medium, escape: false), skip_pipeline: true, alt: @content.titolo %>
+
+
 
     <p><strong>Titolo:</strong> <%= @content.titolo %></p>
     <p><strong>Descrizione:</strong> <%= @content.descrizione %></p>

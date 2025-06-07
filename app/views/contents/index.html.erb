@@ -1,39 +1,89 @@
 <div class="container">
-  <h4 class="center-align">Elenco Contenuti</h4>
+  <div class="section">
 
-  <div class="right-align">
-    <%= link_to "Nuovo Contenuto", new_content_path, class: "btn waves-effect waves-light purple darken-2" %>
-  </div>
+    <!-- Titolo principale -->
+    <h3 class="center-align teal-text text-darken-2" style="margin-bottom: 32px;">
+      Elenco Contenuti
+    </h3>
 
-  <table class="highlight responsive-table">
-    <thead>
-      <tr>
-        <th>Titolo</th>
-        <th>Descrizione</th>
-        <th>Prezzo</th>
-        
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @contents.each do |content| %>
-        <tr>
-          <td><%= content.titolo %></td>
-          <td><%= content.descrizione %></td>
-          <td><%= number_to_currency(content.price) %></td>
-          <td>
-            <td>
-  <div class="btn-group-vertical">
-    <%= link_to "Mostra", content_path(content), class: "btn green full-width" %>
-    <%= link_to "Modifica", edit_content_path(content), class: "btn blue full-width" %>
-    <%= link_to "Elimina", content_path(content), method: :delete, data: { confirm: "Sei sicuro?" }, class: "btn red full-width" %>
-  </div>
-</td>
-
-          </td>
-        </tr>
+    <!-- Pulsante Nuovo Contenuto in alto a destra -->
+    <div class="right-align" style="margin-bottom: 24px;">
+      <%= link_to new_content_path,
+          class: "btn-large purple darken-2 waves-effect waves-light hoverable" do %>
+        <i class="material-icons left">add</i>
+        Nuovo Contenuto
       <% end %>
-    </tbody>
-  </table>
+    </div>
+
+    <!-- Card contenitore della tabella -->
+    <div class="card z-depth-3 modern-card">
+      <div class="card-content padded-content" style="padding-bottom: 0;">
+        <table class="highlight responsive-table modern-table">
+          <thead>
+            <tr>
+              <th>Immagine</th>
+              <th>Titolo</th>
+              <th>Descrizione</th>
+              <th>Prezzo</th>
+              <th class="center-align">Azioni</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @contents.each do |content| %>
+              <tr>
+                <!-- Thumbnail -->
+                <td class="thumbnail-cell">
+                  <% if content.cover_file_name.present? %>
+                    <%= image_tag content.cover.url(:thumb, escape: false),
+                                  skip_pipeline: true,
+                                  class: "thumb-img" %>
+                  <% else %>
+                    <i class="material-icons grey-text text-lighten-1">image_not_supported</i>
+                  <% end %>
+                </td>
+
+                <!-- Titolo, descrizione, prezzo -->
+                <td><%= content.titolo %></td>
+                <td><%= truncate(content.descrizione, length: 80) %></td>
+                <td><%= number_to_currency(content.price) %></td>
+
+                <!-- Azioni -->
+                <td class="center-align actions-cell">
+                  <%= link_to content_path(content),
+                      class: "btn-small green lighten-1 waves-effect waves-light",
+                      title: "Visualizza Dettagli" do %>
+                    <i class="material-icons left">visibility</i>
+                    Mostra
+                  <% end %>
+
+                  <%= link_to edit_content_path(content),
+                      class: "btn-small blue lighten-1 waves-effect waves-light",
+                      title: "Modifica Contenuto" do %>
+                    <i class="material-icons left">edit</i>
+                    Modifica
+                  <% end %>
+
+                  <%= link_to content_path(content),
+                      method: :delete,
+                      data: { confirm: "Sei sicuro di voler eliminare questo contenuto?" },
+                      class: "btn-small red lighten-1 waves-effect waves-light",
+                      title: "Elimina Contenuto" do %>
+                    <i class="material-icons left">delete</i>
+                    Elimina
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer card con link di navigazione -->
+      <div class="card-action center-align">
+        <%= link_to "Torna ai contenuti", contents_path,
+            class: "blue-text text-darken-2" %>
+      </div>
+    </div>
+  </div>
 </div>
 

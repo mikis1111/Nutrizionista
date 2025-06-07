@@ -1,32 +1,70 @@
-<%= form_with(model: content) do |form| %>
-  <% if content.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+<%= form_with model: content,
+              local: true,
+              html: { multipart: true, class: "modern-form" } do |form| %>
 
+  <% if content.errors.any? %>
+    <div class="card-panel red lighten-4 red-text text-darken-4" style="margin-bottom: 20px;">
+      <strong><%= pluralize(content.errors.count, "errore") %> impedisce il salvataggio:</strong>
       <ul>
-        <% content.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% content.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :titolo, style: "display: block" %>
-    <%= form.text_field :titolo %>
+  <div class="input-field">
+    <%= form.text_field :titolo, id: "content_titolo", class: "validate" %>
+    <%= form.label :titolo, "Titolo" %>
   </div>
 
-  <div>
-    <%= form.label :descrizione, style: "display: block" %>
-    <%= form.text_area :descrizione %>
+  <div class="input-field">
+    <%= form.text_area :descrizione, id: "content_descrizione", class: "materialize-textarea" %>
+    <%= form.label :descrizione, "Descrizione" %>
   </div>
 
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
+  <div class="input-field">
+    <%= form.number_field :price, id: "content_price", step: "0.01", class: "validate" %>
+    <%= form.label :price, "Prezzo (€)" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <% if content.cover_file_name.present? %>
+    <div class="center-align" style="margin-bottom: 20px;">
+      <p class="grey-text text-darken-1"><strong>Anteprima immagine corrente:</strong></p>
+      <%= image_tag content.cover.url(:medium, escape: false),
+                    skip_pipeline: true,
+                    alt: "Cover di #{content.titolo}",
+                    class: "responsive-img bordered-img" %>
+    </div>
+  <% end %>
+
+  <div class="file-field input-field" style="margin-top: 20px;">
+    <div class="btn purple darken-2">
+      <span>Cover</span>
+      <%= form.file_field :cover %>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text" placeholder="Scegli un file per la cover">
+    </div>
+  </div>
+
+  <div class="file-field input-field" style="margin-top: 20px;">
+    <div class="btn purple darken-2">
+      <span>Allegato</span>
+      <%= form.file_field :allegato %>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text" placeholder="Scegli un file per l'allegato">
+    </div>
+  </div>
+ 
+
+
+  <div class="center-align" style="margin-top: 30px;">
+    <%= form.submit(
+          content.new_record? ? "Crea Contenuto" : "Aggiorna Contenuto",
+          class: "btn-large purple darken-2 waves-effect waves-light"
+        ) %>
   </div>
 <% end %>
+

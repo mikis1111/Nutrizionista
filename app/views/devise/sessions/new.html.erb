@@ -4,36 +4,40 @@
       <h4 class="center-align teal-text text-darken-2">Accesso</h4>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "col s12" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
+        <!-- Email -->
         <div class="input-field">
           <%= f.label :email %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "validate" %>
         </div>
 
+        <!-- Password con icona occhio -->
         <div class="input-field">
-          <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "current-password", class: "validate" %>
+          <%= f.password_field :password, id: "login_password", autocomplete: "current-password", class: "validate" %>
+          <label for="login_password">Password</label>
+          
         </div>
 
-<% if devise_mapping.rememberable? %>
-  <p>
-    <label>
-      <%= f.check_box :remember_me, id: "remember_me" %>
-      <span>Ricordami</span>
-    </label>
-  </p>
-<% end %>
+        <!-- Ricordami -->
+        <p>
+          <label>
+            <%= f.check_box :remember_me, id: "remember_me" %>
+            <span>Ricordami</span>
+          </label>
+        </p>
 
-
-
+        <!-- Bottone -->
         <div class="input-field center">
-          <%= f.submit "Accedi", class: "btn waves-effect waves-light purple darken-2" %>
+          <%= f.submit "Accedi", class: "waves-effect waves-light btn teal darken-2" %>
         </div>
       <% end %>
 
+      <!-- Link di Devise -->
       <div class="center">
         <%= render "devise/shared/links" %>
       </div>
     </div>
   </div>
 </div>
+

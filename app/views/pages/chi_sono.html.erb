@@ -1,6 +1,55 @@
-<div class="container">
-  <h1 class="teal-text text-darken-2">Chi sono</h1>
-  <p class="flow-text">
-    Mi chiamo Francesca, sono una nutrizionista con esperienza nel supporto alimentare personalizzato per ogni tipo di esigenza.
-  </p>
+<div class="profile-section">
+  <div class="section animated-card">
+    <div style="max-width: 960px; margin: 0 auto; padding: 0 16px;">
+      <div class="card chi-sono-card z-depth-3 white"
+           style="padding: 24px; border-radius: 16px; border: 1px solid #ddd;">
+
+        <!-- Foto Profilo -->
+        <div class="center-align">
+          <img src="<%= asset_path('dottoressa.jpg') %>"
+               alt="Francesca Vitale"
+               class="circle z-depth-2"
+               style="width: 140px; height: 140px; object-fit: cover; margin-bottom: 12px;">
+        </div>
+
+        <!-- Titolo -->
+        <h5 class="center-align teal-text text-darken-4" style="margin-bottom: 16px; font-size: 1.6rem;">
+          Chi sono
+        </h5>
+
+       <p style="font-size: 1rem; line-height: 1.6; text-align: justify; margin: 0 16px;">
+  Mi chiamo <strong>Francesca Vitale</strong>, sono una nutrizionista con esperienza nel supporto alimentare
+  personalizzato per ogni tipo di esigenza. Il mio obiettivo è accompagnarti con equilibrio,
+  semplicità ed empatia verso uno stile di vita più sano.
+</p>
+
+<p style="font-size: 1rem; line-height: 1.6; text-align: justify; margin: 20px 16px 0;">
+  Il mio approccio si basa su un ascolto attento, su indicazioni pratiche e flessibili,
+  e su un metodo scientificamente valido ma accessibile. Ogni piano è costruito su misura,
+  per rendere il cambiamento sostenibile e motivante.
+</p>
+
+
+        <!-- Lista con icone -->
+        <ul class="collection with-header z-depth-1" style="margin-top: 24px; font-size: 0.9rem;">
+          <li class="collection-header center-align">
+            <h6 style="font-size: 1rem;">Le mie consulenze ti aiutano a:</h6>
+          </li>
+          <li class="collection-item"><i class="material-icons tiny green-text">check</i> Migliorare le abitudini alimentari</li>
+          <li class="collection-item"><i class="material-icons tiny green-text">check</i> Raggiungere un benessere duraturo</li>
+          <li class="collection-item"><i class="material-icons tiny green-text">check</i> Gestire il peso in modo naturale</li>
+          <li class="collection-item"><i class="material-icons tiny green-text">check</i> Imparare a mangiare con consapevolezza</li>
+
+        </ul>
+
+        <!-- Pulsante -->
+        <div class="center-align" style="margin-top: 28px;">
+          <a href="#" class="btn purple darken-3 waves-effect waves-light" style="font-size: 0.9rem;">
+            Prenota una consulenza
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
